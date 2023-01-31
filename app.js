@@ -34,6 +34,7 @@ app.get('/', async (req, res) => {
   try {
     main();
     User.find({}, (err, user) => {
+      console.log(user);
       res.json(user)
     });
   } catch (e) {
