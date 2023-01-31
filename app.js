@@ -29,10 +29,10 @@ async function main() {
   mongoose.set('strictQuery', true);
   await mongoose.connect(uri, { useNewUrlParser: true, bufferCommands: false });
 }
+main();
 
 app.get('/', async (req, res) => {
   try {
-    main();
     User.find({}, (err, user) => {
       console.log(user);
       res.json(user)
