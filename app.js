@@ -24,22 +24,24 @@ app.use(allowCrossDomain)
 
 const uri = process.env.DATABASE;
 const User = require('./model');
+let user
 
 async function main() {
-  mongoose.set('strictQuery', true);
-  await mongoose.connect(uri, { useNewUrlParser: true, bufferCommands: false });
-}
-main();
-
-app.get('/', async (req, res) => {
   try {
-    User.find({}, (err, user) => {
-      console.log(user);
-      res.json(user)
+    mongoose.set('strictQuery', true);
+    await mongoose.connect(uri, { useNewUrlParser: true, bufferCommands: false });
+     User.find({}, (err, data) => {
+      console.log(data);
+      user = data
     });
   } catch (e) {
     console.log(e);
   }
+}
+main();
+
+app.get('/', async (req, res) => {
+await res.json(user)
 })
 
 const PORT = process.env.PORT || 8003
