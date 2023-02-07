@@ -41,11 +41,13 @@ async function main() {
 main();
 
 app.get('/feedback', async (req, res) => {
-await res.json(user)
+  await res.json(user)
 })
+
 
 const PORT = process.env.PORT || 8000
 app.listen(PORT, () => console.log(`server listen to port ${PORT} ...`))
+console.log(process.platform);
 
 // domain name of this api 
 // feedbackrestapi-production.up.railway.app
