@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const connection = mongoose.connection;
 const cors = require('cors');
 require('dotenv').config();
 
@@ -23,6 +24,7 @@ app.use(allowCrossDomain)
 
 // URI variable is set to the value of the DATABASE environment variable which holds the connection string to the MongoDB database.
 const uri = process.env.DATABASE;
+
 // User model is imported from a separate file in the same directory.
 const User = require('./model');
 
@@ -35,6 +37,7 @@ async function getDataIntoDb(user) {
     await User.find(user, (err, data) => {
       if (error) console.log('error when we get the data');
       else console.log('here it is - ', data);
+      connection.close();
       return data
     });
   } catch (e) {
@@ -60,6 +63,7 @@ async function insertDataIntoDb(data){
         console.log('Feedback saved successfully!');
       }
     });
+    connection.close();
   } catch (e) {
     console.log(e.message);
   }
