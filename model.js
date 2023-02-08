@@ -1,14 +1,21 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-  user_id: String,
-  user_name: String,
-  user_email: {type: String, unique: true},
-  rating: Number,
-  comments: String
+const userCommentSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  comment: {
+    type: String,
+    required: true
+  }
 });
 
-const User = mongoose.model('feedbacks', UserSchema);
+const UserComment = mongoose.model('UserComment', userCommentSchema);
 
-module.exports = User;
+module.exports = UserComment;
