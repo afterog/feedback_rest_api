@@ -1,6 +1,5 @@
 # feedback_rest_api
 
-2 / 2
 
 This GitHub repository contains a RESTful API for collecting feedback. The API is built using Node.js, Express, and MongoDB.
 
