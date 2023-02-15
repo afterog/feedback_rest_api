@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const fs = require('fs')
+const path = require('path');
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const UserFeedback = require("./models/UserFeedback");
@@ -51,6 +53,17 @@ app.post("/setdata", async (req, res) => {
     console.error(error);
     res.status(500).send("Error inserting user feedback into the database.");
   }
+});
+
+app.get('/pdf', (req, res) => {
+  const filePath = path.join(__dirname, 'resume[Alex].pdf');
+
+  // Set the content type to application/pdf to force the browser to download the file
+  res.type('application/pdf');
+  res.setHeader('Content-Disposition', 'attachment; filename="resume.pdf"');
+  // Read the file from disk and pipe it to the response object
+  const stream = fs.createReadStream(filePath);
+  stream.pipe(res);
 });
 
 
