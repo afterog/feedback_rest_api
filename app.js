@@ -55,6 +55,10 @@ app.post("/setdata", async (req, res) => {
   }
 });
 
+app.get('/', async (req, res) => {
+  res.send(`hello it's alex og feedback api`)
+})
+
 app.get('/pdf', (req, res) => {
   const filePath = path.join(__dirname, 'resume[Alex].pdf');
 
@@ -68,6 +72,8 @@ app.get('/pdf', (req, res) => {
 
 
 
+
+const PORT = process.env.PORT || 8000
 mongoose.set('strictQuery', true);
 mongoose
   .connect(process.env.DATABASE, {
@@ -76,8 +82,8 @@ mongoose
   })
   .then(() => {
     console.log("Successfully connected to MongoDB.");
-    app.listen(3000, () => {
-      console.log("Server is listening on port 3000.");
+    app.listen(PORT, () => {
+      console.log(`Server is listening on port ${PORT}.`);
     });
   })
   .catch(error => {
