@@ -87,6 +87,7 @@ mongoose
     });
   })
   .catch(error => {
+    console.log('error occur on og gizat');
     console.error(error);
   });
 
