@@ -74,22 +74,27 @@ app.get('/pdf', (req, res) => {
 
 
 const PORT = process.env.PORT || 8000
-mongoose.set('strictQuery', true);
-mongoose
-  .connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log("Successfully connected to MongoDB.");
-    app.listen(PORT, () => {
-      console.log(`Server is listening on port ${PORT}.`);
+try {
+  mongoose.set('strictQuery', true);
+  mongoose
+    .connect(process.env.DATABASE, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+    .then(() => {
+      console.log("Successfully connected to MongoDB.");
+      app.listen(PORT, () => {
+        console.log(`Server is listening on port ${PORT}.`);
+      });
+    })
+    .catch(error => {
+      console.log('error occur on og gizat');
+      console.error(error);
     });
-  })
-  .catch(error => {
-    console.log('error occur on og gizat');
-    console.error(error);
-  });
+  
+} catch (error) {
+  console.log(error.message);
+}
 
 
 // feedbackrestapi-production.up.railway.app
