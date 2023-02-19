@@ -2,7 +2,7 @@ const express = require('express');
 const route = express.Router();
 const fs = require('fs');
 const path = require('path');
-const { findData, insertData }= require('../DATABASE/crud');
+const { findData, insertData }= require('./crud');
 
 // Middleware function to log incoming requests
 const requestLogger = (req, res, next) => {

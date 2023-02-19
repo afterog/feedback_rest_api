@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
-const route = require('./routes/router');
+const route = require('./router');
 require('dotenv').config();
 
 // allowCrossDomain sets up CORS headers to allow cross-domain requests to the API.

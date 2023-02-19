@@ -1,4 +1,4 @@
-const Feedback = require("../models/Feedback");
+const Feedback = require("./Feedback");
 
  async function insertData(query) {
     try {
