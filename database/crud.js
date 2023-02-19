@@ -5,9 +5,11 @@ const Feedback = require("../models/Feedback");
       const newUserFeedback = new Feedback(query);
       await newUserFeedback.save();
       console.log("Successfully inserted user feedback into the database.");
+      return true
     } catch (error) {
       console.error(error);
       console.log("Error inserting user feedback into the database.");
+      return false
     }
   }
 

@@ -18,16 +18,22 @@ route.post("/setdata", async (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const feedback = req.body.feedback;
-    console.log(name);
     const obj = {fullName: name, email: email, feedback: feedback};
+    const data = await findData({fullName: name})
+
+
+    if ( await insertData(obj)) {
+      res.status(200).send(true)
+    }
+    else{
+      res.send(false)
+    }
    
-   insertData(obj)
-   res.status(200).send('successfully insert into db')
   });
   
-route.get('/', async (req, res) => {
+route.get('/getdata', async (req, res) => {
     const data = await findData({})
-    console.log(data);
+    console.log('send data from database to client');
     res.send(data)
   })
   
