@@ -9,10 +9,10 @@ require('dotenv').config();
 
 // allowCrossDomain sets up CORS headers to allow cross-domain requests to the API.
 let allowCrossDomain = function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
 }
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,14 +37,15 @@ try {
     })
     .then(() => {
       console.log("Successfully connected to MongoDB.");
-      app.listen(PORT, () => {
-        console.log(`Server is listening on port ${PORT}.`);
+      const server = app.listen(0, () => {
+        const port = server.address().port;
+        console.log(`Server is listening on port ${port}.`);
       });
     })
     .catch(error => {
       console.error(error.message);
     });
-  
+
 } catch (error) {
   console.log(error.message);
 }
